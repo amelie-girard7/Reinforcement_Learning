@@ -120,9 +120,7 @@ By introducing the discount factor, the agent is encouraged to take actions that
 
 The **Bellman Equation** combines the concepts of rewards and the discount factor. It calculates the value of each state by considering both immediate rewards and the discounted value of future rewards. The equation ensures that the agent always makes decisions that maximize long-term rewards.
 
-![bellman](img/bellman
-
-.PNG)
+![bellman](img/bellman.PNG)
 
 For example, if the agent moves to the right and expects a reward of 4 points, the Bellman Equation discounts that future reward and calculates the current state’s value accordingly. The goal is for the agent to always choose actions that lead to the highest cumulative reward.
 
@@ -134,6 +132,7 @@ To solve the Bellman Equation, the agent must iteratively update the value of ea
 
 By applying the Bellman Equation to all states repeatedly, the agent propagates the rewards throughout the grid. Eventually, the values of all states become optimal, allowing the agent to make the best decisions in any situation.
 
+![solve bellman](img/solvebellman1.PNG)
 In larger environments, solving the Bellman Equation can be computationally challenging, but it provides a structured way for the agent to learn the optimal strategy.
 
 ### 2.6. Deterministic vs Stochastic Processes
