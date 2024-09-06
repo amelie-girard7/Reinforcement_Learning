@@ -233,6 +233,8 @@ Successful RLHF implementation depends on well-prepared datasets. The following 
 
 **Data Preparation**: Ensure that datasets are formatted in JSON Lines and stored in Google Cloud Storage (GCS). Proper data organization is crucial for smooth training operations.
 
+For the Dataset exploration refer to [L2_explore_data.ipynb](src/L2/L2_explore_data.ipynb).
+
 #### Reward Model Training
 
 The reward model is trained using the preference dataset. It learns to predict a score for each output based on how well it aligns with human preferences.
@@ -281,8 +283,6 @@ The LLM's policy is optimized using algorithms like Proximal Policy Optimization
 
 ![Policy](img/ppo.PNG)
 *// This image shows how the LLM’s policy is optimized using RL algorithms to better align with human feedback.*
-
-For the Dataset exploration refer to [L2_explore_data.ipynb](src/L2/L2_explore_data.ipynb).
 
 ## 3.3. Tuning an LLM with RLHF
 
