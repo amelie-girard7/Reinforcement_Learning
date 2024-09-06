@@ -194,7 +194,7 @@ By continuously refining the policy network, the agent becomes more efficient at
 
 Traditional machine learning models, when trained purely on data, often produce outputs that are technically correct but may miss the nuances of human preferences. For example, a model trained to summarize a news article might generate a summary that is factually accurate but fails to highlight the key points that readers care most about. RLHF addresses this by integrating direct human feedback, resulting in summaries that are not only accurate but also aligned with what humans find most relevant.
 
-## How Does RLHF Work?
+## 3.1. How Does RLHF Work?
 
 RLHF works by integrating human feedback into the model's training process. The model is refined iteratively based on this feedback, resulting in outputs that better align with human expectations.
 
@@ -219,21 +219,21 @@ RLHF works by integrating human feedback into the model's training process. The 
 ![How does it work](img/how.PNG)
 *// This image visualizes the basic workflow of RLHF, showing how human feedback guides the model towards more desirable outputs.*
 
-## Datasets for RL Training
+## 3.2. Datasets for RLHF
 
 Successful RLHF implementation depends on well-prepared datasets. The following are essential:
 
-1. **Preference Dataset**: Contains pairs of input texts and multiple model-generated outputs, along with labels indicating human preferences. This dataset is used to train the reward model.
+**Preference Dataset**: Contains pairs of input texts and multiple model-generated outputs, along with labels indicating human preferences. This dataset is used to train the reward model.
 
     - **Example**: In the context of text summarization, the dataset might include a research paper followed by several different summaries, with labels indicating which summary better captures the key findings and conclusions.
 
-2. **Prompt Dataset**: A collection of prompts used to generate outputs from the LLM during fine-tuning.
+**Prompt Dataset**: A collection of prompts used to generate outputs from the LLM during fine-tuning.
 
     - **Example**: For autocompletion tasks, prompts could be the beginning of a sentence like "The economic impact of the pandemic has been..." that the model needs to complete in a coherent and contextually appropriate manner.
 
-3. **Data Preparation**: Ensure that datasets are formatted in JSON Lines and stored in Google Cloud Storage (GCS). Proper data organization is crucial for smooth training operations.
+**Data Preparation**: Ensure that datasets are formatted in JSON Lines and stored in Google Cloud Storage (GCS). Proper data organization is crucial for smooth training operations.
 
-### Reward Model Training
+#### Reward Model Training
 
 The reward model is trained using the preference dataset. It learns to predict a score for each output based on how well it aligns with human preferences.
 
@@ -242,7 +242,7 @@ The reward model is trained using the preference dataset. It learns to predict a
 ![Training](img/training.PNG)
 *// This image illustrates the training phase of the reward model, where it learns to assign scores based on human preferences.*
 
-### Reward Model Inference
+#### Reward Model Inference
 
 After training, the reward model is used during inference to evaluate new outputs. It assigns a score to each output, guiding the model toward producing preferred outputs.
 
@@ -284,7 +284,7 @@ The LLM's policy is optimized using algorithms like Proximal Policy Optimization
 
 For the Dataset exploration refer to [L2_explore_data.ipynb](src/L2/L2_explore_data.ipynb).
 
-## Tune an LLM with RLHF
+## 3.3. Tuning an LLM with RLHF
 
 ### Comparison of Pipelines
 
@@ -299,7 +299,7 @@ To understand the difference between a standard ML pipeline and an RLHF pipeline
 
 Refer to the [L3_tune_llm.ipynb](src/L3/L3_tune_llm.ipynb).
 
-## Evaluate the Tuned Model
+## 3.4. Evaluating the Tuned Model
 
 Evaluation is critical to ensure that the tuned model meets performance expectations:
 
@@ -311,7 +311,7 @@ Evaluation is critical to ensure that the tuned model meets performance expectat
 
 Refer to the [L4_evaluate_model.ipynb](src/L4/L4_evaluate_model.ipynb).
 
-## Google Cloud Setup
+## 3.5. Google Cloud Setup
 
 Setting up the RLHF pipeline on Google Cloud involves several steps:
 
@@ -339,21 +339,21 @@ Refer to the [L5_google_cloud_setup.ipynb](src/L5/L5_google_cloud_setup.ipynb).
 
 **Reinforcement Learning (RL)** is a machine learning paradigm where an **agent** learns to make decisions by interacting with an **environment** to achieve a specific **goal**. The agent takes **actions** based on the current **state** of the environment and receives **rewards** as feedback, which it uses to learn and improve its decision-making policy over time.
 
-### 6.1. Key Terminology
+### Key Terminology
 
-1. **Environment (E)**: The external system with which the agent interacts.
+**Environment (E)**: The external system with which the agent interacts.
    - **Example**: In counterfactual story rewriting, the environment is the narrative context that includes the characters, plot, and setting of the story.
 
-2. **State (s)**: A specific situation or configuration of the environment at a given time.
+**State (s)**: A specific situation or configuration of the environment at a given time.
    - **Example**: The state could be the current draft of the story at a particular point in the narrative, including characters, plot points, and stylistic elements.
 
-3. **Action (a)**: A decision or move made by the agent that affects the state of the environment.
+**Action (a)**: A decision or move made by the agent that affects the state of the environment.
    - **Example**: Altering a plot point in a story rewrite to align with a counterfactual event while minimizing unnecessary changes.
 
-4. **Reward (r)**: A scalar feedback signal received after taking an action, indicating the desirability of the outcome.
+**Reward (r)**: A scalar feedback signal received after taking an action, indicating the desirability of the outcome.
    - **Example**: A positive reward when a story rewrite successfully integrates a counterfactual event with minimal disruption to the original narrative; a negative reward if the story loses coherence or deviates too much from its original form.
 
-5. **Policy (π)**: The strategy employed by the agent to decide which action to take.
+**Policy (π)**: The strategy employed by the agent to decide which action to take.
    - **Deterministic Policy**: Always selects the same action for a given state.
 
      $$a = \pi(s)$$
@@ -362,25 +362,25 @@ Refer to the [L5_google_cloud_setup.ipynb](src/L5/L5_google_cloud_setup.ipynb).
 
      $$\pi(a|s) = P(a|s)$$
 
-### 6.2. Key Assumptions
+### Key Assumptions
 
-1. **Action Influences Measurement**: The agent’s actions directly influence the state of the environment.
-2. **Markov Decision Process (MDP) Framework**: RL problems are framed as MDPs where the decision-making process is modeled using states, actions, and rewards.
-3. **Rewards and Cumulative Rewards**: The agent's goal is to maximize the cumulative reward over time.
-4. **Infinite Horizon and Discounted Cumulative Reward**: Future rewards are discounted to prevent infinite values.
-5. **Application to Finite Horizons**: Discounted rewards can also apply in finite-horizon problems, balancing immediate and long-term benefits.
+**Action Influences Measurement**: The agent’s actions directly influence the state of the environment.
+**Markov Decision Process (MDP) Framework**: RL problems are framed as MDPs where the decision-making process is modeled using states, actions, and rewards.
+**Rewards and Cumulative Rewards**: The agent's goal is to maximize the cumulative reward over time.
+**Infinite Horizon and Discounted Cumulative Reward**: Future rewards are discounted to prevent infinite values.
+**Application to Finite Horizons**: Discounted rewards can also apply in finite-horizon problems, balancing immediate and long-term benefits.
 
-### 6.3. Core Concepts and Mathematical Foundations
+### Core Concepts and Mathematical Foundations
 
-#### **Markov Decision Process (MDP)**
+**Markov Decision Process (MDP)**
 
 An MDP provides a mathematical framework for decision-making, defined by a tuple $(S, A, P, R, \gamma)$.
 
-#### **Bellman Equations**
+**Bellman Equations**
 
 Provide recursive definitions for the value functions.
 
-#### **Policy Optimization Techniques**
+**Policy Optimization Techniques**
 
 - **Value Iteration**: Iteratively updates the value function.
 - **Policy Iteration**: Alternates between policy evaluation and policy improvement steps.
